@@ -1,4 +1,6 @@
-FROM docker/whalesay:latest
-LABEL Name=webplusdockerandcompose Version=0.0.1
-RUN apt-get -y update && apt-get install -y fortunes
-CMD ["sh", "-c", "/usr/games/fortune -a | cowsay"]
+FROM node:16-alpine
+WORKDIR /app
+COPY package.json .
+RUN npm i
+COPY . ./
+ENTRYPOINT [ "npm", "run", "start" ]

@@ -25,7 +25,10 @@ export const CollectionsView = ({ url, ownWishes }) => {
   const [user] = useContext(UserContext);
 
   useEffect(() => {
-    getCollections().then((res) => {console.log(res), setCollectionsList(res)});
+    getCollections().then((res) => { 
+      console.log(res); 
+      setCollectionsList(res); 
+    });
   }, []);
 
   const handleCollectionPopupOpen = () => {
