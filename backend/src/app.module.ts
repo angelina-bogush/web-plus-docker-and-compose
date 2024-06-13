@@ -14,16 +14,17 @@ import { WishList } from './wishlists/wishlist.entity';
 import { Offer } from './offers/offer.entity';
 import { ConfigModule } from '@nestjs/config';
 import { config } from './config/config';
+require('dotenv').config();
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'student',
-      password: 'student',
-      database: 'kupipodariday',
+      host: process.env.POSTGRES_HOST,
+      port: Number(process.env.POSTGRES_PORT),
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DB,
       schema: 'kupipodariday',
       entities: [User, Wish, WishList, Offer],
       synchronize: true,
