@@ -1,6 +1,12 @@
-FROM node:16-alpine
+FROM node:16-alpine AS builder
 WORKDIR /app
-COPY package.json .
-RUN npm i
+COPY package*.json .
+RUN npm i --no-audit --no-fund
 COPY . ./
-ENTRYPOINT [ "npm", "run", "start" ]
+RUN npm run build
+
+FROM nginx:alpine AS runner
+WORKDIR /app
+COPY --from=builder /app/build /urs/share/nginx/html
+COPY nginx/default.conf /etc/nginx/conf.d
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]

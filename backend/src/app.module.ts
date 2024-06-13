@@ -25,7 +25,6 @@ require('dotenv').config();
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      schema: 'kupipodariday',
       entities: [User, Wish, WishList, Offer],
       synchronize: true,
     }),

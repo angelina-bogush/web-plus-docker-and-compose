@@ -20,7 +20,7 @@ services:
     image: compose-frontend
     restart: always
     ports:
-      - 8081:3000
+      - 8080:80
 
   postgres:
     container_name: postgres
@@ -29,11 +29,11 @@ services:
     env_file:
       - .env
   
-  adminer:
-    container_name: adminer
-    image: adminer
-    ports:
-      - 8080:8080
+  # adminer:
+  #   container_name: adminer
+  #   image: adminer
+  #   ports:
+  #     - 8080:8080
 
 
 
